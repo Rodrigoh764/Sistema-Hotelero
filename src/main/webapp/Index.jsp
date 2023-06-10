@@ -1,12 +1,22 @@
 <%@ page import="java.sql.*"%>
 
+<%@ page import="modelo.ClienteRegistrados"%>
 <%
+int existe = 0;
+
 String correo = (String) session.getAttribute("servletMsg");
+
+ClienteRegistrados cliregistrado = new ClienteRegistrados();
+
+if (correo != null) {
+	cliregistrado.setCorreo(correo);
+	existe = 1;
+}
 %>
 
 <!DOCTYPE html>
 
-<%@ page import="modelo.ClienteRegistrados"%>
+
 
 
 <html lang="en">
@@ -36,8 +46,8 @@ String correo = (String) session.getAttribute("servletMsg");
 <body id="page-top">
 
 	<%
-ClienteRegistrados registrado = new ClienteRegistrados();
-%>
+	ClienteRegistrados registrado = new ClienteRegistrados();
+	%>
 
 	<input type="hidden" id="status"
 		value="<%=request.getAttribute("status")%>">
@@ -47,7 +57,7 @@ ClienteRegistrados registrado = new ClienteRegistrados();
 		class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top "
 		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand" href="Index.jsp">El "Paraiso"</a>
+			<a class="navbar-brand" href="Index.jsp">"Tlazohtiliztli"</a>
 			<button
 				class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded"
 				type="button" data-bs-toggle="collapse"
@@ -75,29 +85,34 @@ ClienteRegistrados registrado = new ClienteRegistrados();
 						rs = sentencia.executeQuery();
 						while (rs.next()) {
 							String nomUsuario = rs.getString("nombre");
-						%> 
+						%>
 					
-
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							<%=nomUsuario%></a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="Registro">Cerrar Sessión</a></li>
-				            <li><a class="dropdown-item" href="#">Reservaciones</a></li>
-							
-						</ul>
-						</li>
-						<%}%>
+							<li><a class="dropdown-item" href="Registro">Cerrar
+									Sessión</a></li>
+							<li><a class="dropdown-item" href="#">Reservaciones</a></li>
+
+						</ul></li>
+					<%
+					}
+					%>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">Servicios</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">Acerca</a></li>
-						<%if(correo == null){ %>
+					<%
+					if (correo == null) {
+					%>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded" href="Login.jsp">Iniciar
 							sesión</a></li>
-							<%} %>
+					<%
+					}
+					%>
 
 
 				</ul>
@@ -150,7 +165,7 @@ ClienteRegistrados registrado = new ClienteRegistrados();
 
 				<!--Servicio 1 -->
 				<div class="col-md-6 col-lg-4 mb-5">
-					<a href="Habitacion.jsp">
+					<a href="Habitacion.jsp?correo=<%=existe%>">
 						<div class="portfolio-item mx-auto" data-bs-toggle="modal"
 							data-bs-target="#portfolioModal1">
 
@@ -162,8 +177,7 @@ ClienteRegistrados registrado = new ClienteRegistrados();
 									<i class="fas fa-plus fa-3x"></i>
 								</div>
 							</div>
-							<img class="img-fluid" src="images/habitacion.jpg"
-								alt="..." />
+							<img class="img-fluid" src="images/habitacion.jpg" alt="..." />
 						</div>
 
 					</a>
@@ -180,8 +194,7 @@ ClienteRegistrados registrado = new ClienteRegistrados();
 									<i class="fas fa-plus fa-3x"></i>
 								</div>
 							</div>
-							<img class="img-fluid"
-								src="images/entretenimiento.jpg" alt="..." />
+							<img class="img-fluid" src="images/entretenimiento.jpg" alt="..." />
 						</div>
 					</a>
 					<h2 style="text-align: center">Entretenimineto</h2>
@@ -197,8 +210,7 @@ ClienteRegistrados registrado = new ClienteRegistrados();
 									<i class="fas fa-plus fa-3x"></i>
 								</div>
 							</div>
-							<img class="img-fluid" src="images/comida.jpg"
-								alt="..." />
+							<img class="img-fluid" src="images/comida.jpg" alt="..." />
 						</div>
 					</a>
 					<h2 style="text-align: center">Comida</h2>
@@ -214,8 +226,7 @@ ClienteRegistrados registrado = new ClienteRegistrados();
 									<i class="fas fa-plus fa-3x"></i>
 								</div>
 							</div>
-							<img class="img-fluid" src="images/lavandaria.jpg"
-								alt="..." />
+							<img class="img-fluid" src="images/lavandaria.jpg" alt="..." />
 						</div>
 					</a>
 					<h2 style="text-align: center">Lavanderia</h2>
@@ -231,8 +242,7 @@ ClienteRegistrados registrado = new ClienteRegistrados();
 									<i class="fas fa-plus fa-3x"></i>
 								</div>
 							</div>
-							<img class="img-fluid" src="images/red.jpg"
-								alt="..." />
+							<img class="img-fluid" src="images/red.jpg" alt="..." />
 						</div>
 					</a>
 					<h2 style="text-align: center">Red</h2>
@@ -248,8 +258,7 @@ ClienteRegistrados registrado = new ClienteRegistrados();
 									<i class="fas fa-plus fa-3x"></i>
 								</div>
 							</div>
-							<img class="img-fluid" src="images/seguridad.jpg"
-								alt="..." />
+							<img class="img-fluid" src="images/seguridad.jpg" alt="..." />
 						</div>
 					</a>
 					<h2 style="text-align: center">Seguridad</h2>

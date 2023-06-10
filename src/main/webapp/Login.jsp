@@ -72,6 +72,10 @@
 	if(status == "error"){
 		swal("¡Fallido!", "La cuenta ó contraseña son incorrectas, vuelve a intentar");
 	}
+	
+	if(status == "NoRegistrado"){
+		swal("Hay que iniciar sesión");
+	}
 
 		
 	

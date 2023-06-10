@@ -17,7 +17,7 @@ private Connection c;
     
     public void agregar( Usuario usuario) {
         try {
-             String sql = "INSERT INTO clientes (nombre, apellidos, fecnac, telefono, correo, contrase\u00f1a ) VALUES (?,?,?,?,?,?)";
+             String sql = "INSERT INTO clientes (nombre, apellidos, fecnac, telefono, correo, contraseña ) VALUES (?,?,?,?,?,?)";
              PreparedStatement pst = this.c.prepareStatement(sql);
             pst.setString(1, usuario.getNombre());
             pst.setString(2, usuario.getApellido());

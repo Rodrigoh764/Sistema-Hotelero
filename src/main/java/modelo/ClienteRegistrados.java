@@ -1,24 +1,30 @@
 package modelo;
 
 public class ClienteRegistrados {
+//GUARDAMOS EL CORREO QUE YA INICIO SESION PARA HACER LAS CONSULTAS SOLO MANDARLO A LLAMAR
+	
+	public int puerta;
+    private String correo;
+    
+    
+    
+	public int getPuerta() {
+		return puerta;
+	}
+	public void setPuerta(int puerta) {
+		this.puerta = puerta;
+	}
+	public String getCorreo() {
+		return correo;
+	}
+	public void setCorreo(String correo) {
+		System.out.print(correo);
+		this.correo = correo;
+	}
+    
+    
 
-	public String nombre;
-    public String correo;
     
-    public String getNombre() {
-        return this.nombre;
-    }
-    
-    public void setNombre(final String nombre) {
-        this.nombre = nombre;
-    }
-    
-    public String getCorreo() {
-        return this.correo;
-    }
-    
-    public void setCorreo(final String correo) {
-        System.out.print("Correo es: " + correo);
-        this.correo = correo;
-    }
+ 
+
 }

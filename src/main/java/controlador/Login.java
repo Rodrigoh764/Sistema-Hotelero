@@ -19,8 +19,8 @@ public class Login extends HttpServlet{
 private static final long serialVersionUID = 1L;
     
     protected void doPost(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
-        final String correo = request.getParameter("email");
-        final String contrase\u00f1a = request.getParameter("password");
+         String correo = request.getParameter("email");
+         String contrase\u00f1a = request.getParameter("password");
         RequestDispatcher dispatcher = null;
         try {
             Class.forName("org.postgresql.Driver");
