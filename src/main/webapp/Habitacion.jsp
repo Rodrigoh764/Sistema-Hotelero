@@ -1,4 +1,6 @@
+<% String correo = (String) session.getAttribute("servletMsg");
 
+%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -133,6 +135,7 @@
 
 				int pase = Integer.parseInt(usuario);
 				if (pase == 1) {
+					 request.getSession().setAttribute("servletMsg", correo);
 				%>
 				<div class="card-body">
 					<a href="Reserva.jsp" class="card-link">Reservar</a> <a href="#"

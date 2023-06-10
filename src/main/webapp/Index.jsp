@@ -9,6 +9,7 @@ String correo = (String) session.getAttribute("servletMsg");
 ClienteRegistrados cliregistrado = new ClienteRegistrados();
 
 if (correo != null) {
+	 request.getSession().setAttribute("servletMsg", correo);
 	cliregistrado.setCorreo(correo);
 	existe = 1;
 }

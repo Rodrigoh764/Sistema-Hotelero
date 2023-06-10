@@ -1,3 +1,6 @@
+<%String correo = (String) session.getAttribute("servletMsg");
+
+%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,6 +17,8 @@
 </head>
 <body style="background: #7f7777">
 
+	<input type="hidden" id="status"
+		value="<%=request.getAttribute("status")%>">
 	<section class="sign-in" style="margin-top: 0px; padding-top: 0px;">
 
 		<div class="signin-content">
@@ -23,30 +28,27 @@
 				</figure>
 
 			</div>
-
+<% request.getSession().setAttribute("servletMsg", correo); %>
 			<div class="signin-form">
 				<h2 class="form-title">Reservar Habitación</h2>
-				<form method="post" action="validar" style="margin-top: 0px; padding-top: 0px">
+				<form method="post" action="ReservarHabitacion" style="margin-top: 0px; padding-top: 0px">
 					
 					<div class="form-group">
 						<label for="username">Número de la HAbitacion:</label> 
-						<input value="A102" style="background: #E2E2E2; margin-left: 200px; width: 300px" disabled=disabled/>
 					</div>
 					
 					<div class="form-group">
 						<label for="username">Capacidad de personas:</label> 
-						<input value="2" style="background: #E2E2E2; margin-left: 200px; width: 300px" disabled=disabled/>
 					</div>
 					
 					<div class="form-group">
 						<label for="username">Categoria</label>
-						<input value="Doble"style="background: #E2E2E2; margin-left: 200px; width: 300px" disabled=disabled/>
 					</div>
 					
 					<div class="form-group">
 						<label for="username">Entrada</label> 
 					
-						<input type="Date" name="Entrada"
+						<input type="Date" name="entrada"
 							style="background: #E2E2E2; margin-left: 200px; width: 300px" />
 					</div>
 					
@@ -60,7 +62,7 @@
 					<div class="form-group form-button" style="text-align: center">
 					<a class="btn btn-primary" href="Index.jsp" role="button" style="font-size: 25px">Regresar</a>
 
-						<input type="submit" name="signin" id="signin" class="form-submit"
+						<input type="submit"  id="signin" class="form-submit"
 							value="Reservar" />
 					</div>
 
@@ -72,7 +74,23 @@
 		</div>
 
 	</section>
+	<!-- JS -->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="js/main.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<link rel="stylesheet" href="alert/dist/sweetalert.css">
+	
+	<script type="text/javascript">
+	var status = document.getElementById("status").value;
 
+	if(status == "error"){
+		swal("¡Fallido!", "Hay un error en la fecha, vuelve a intentarlo");
+	}
+	
+
+		
+	
+	</script>
 
 </body>
 </html>
