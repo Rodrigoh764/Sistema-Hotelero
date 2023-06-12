@@ -1,5 +1,6 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="modelo.Reservacion"%>
+
 <%
 String correo = (String) session.getAttribute("servletMsg");
 
@@ -8,8 +9,9 @@ Reservacion mostrar = new Reservacion();
 String fechaini = request.getParameter("dato1");
 String fechafin = request.getParameter("dato2");
 
+String rango = request.getParameter("dato3");
 
-
+int dias = Integer.parseInt(rango);
 %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -38,10 +40,11 @@ String fechafin = request.getParameter("dato2");
 		<div class="table-responsive">
 			<h2 class="form-title">Revisa los datos y confirma tu
 				reservación</h2>
-			<form method="post" action="RegistroReservacion"
+			<form method="post" action="confirmarRecervacion"
 				style="margin-top: 0px; padding-top: 0px">
 				<table border="2" class="table table-striped table-sm text-center"
 					style="background: #505160; width: 50%; color: white">
+					<fieldset disabled>
 					<thead>
 						<tr>
 							<th scope="col" colspan="2">Datos personales</th>
@@ -68,33 +71,39 @@ String fechafin = request.getParameter("dato2");
 					<tbody>
 						<tr>
 							<td>
-
-								<div class="form-group">
-									
-									<label for="username"><i class="fa-solid fa-user"></i>
-										Nombre completo:</label> <input value="<%=nomUsuario%> <%=apellido%>"
-										style="background: #E2E2E2; margin-left: 200px; width: 280px"
-										disabled=disabled />
 								
-								</div>
-								<div class="form-group">
-									<label for="username"><i class="fa-solid fa-envelope"></i>
-										Correo electrónico:</label> <input value="<%=corre%>"
-										style="background: #E2E2E2; margin-left: 200px; width: 250px"
-										disabled=disabled />
-								</div>
-								<div class="form-group">
-									<label for="username"><i class="fa-solid fa-phone"></i>
-										Número de celular:</label> <input value="<%=telef%>"
-										style="background: #E2E2E2; margin-left: 200px; width: 150px"
-										disabled=disabled />
-								</div>
+									<div class="form-group">
+										<label for="username"><i class="fa-solid fa-user"></i>
+											Nombre:</label><input type="text"  name="nombre"
+											value="<%=nomUsuario%> <%=apellido%>"
+											
+											style="background: #E2E2E2; margin-left: 200px; width: 300px" />
+
+									</div>
+
+									<div class="form-group">
+										<label for="username"><i class="fa-solid fa-user"></i>
+											Correo:</label><input type="text"  name="correo"
+											 value="<%=correo%>" 
+											style="background: #E2E2E2; margin-left: 200px; width: 300px"
+											 />
+
+									</div>
+									<div class="form-group">
+										<label for="username"><i class="fa-solid fa-user"></i>
+											Telefono:</label><input type="text" 
+											name="telefono"  value="<%=telef%>"
+											
+											style="background: #E2E2E2; margin-left: 200px; width: 300px"
+											 />
+
+									</div>
 							</td>
 						<tr>
 					</tbody>
-						<%
-									}
-									%>
+					<%
+					}
+					%>
 				</table>
 
 				<table border="2" class="table table-striped table-sm text-center"
@@ -104,32 +113,58 @@ String fechafin = request.getParameter("dato2");
 							<th scope="col" colspan="2">Datos de la habitación</th>
 						</tr>
 					</thead>
+					<%
+					String consulta2 = "select * from habitaciones where numhab =?";
+
+					sentencia = c.prepareStatement(consulta2);
+					sentencia.setString(1, "208B");
+
+					rs = sentencia.executeQuery();
+					while (rs.next()) {
+						String numhab = rs.getString("numhab");
+						String tipo = rs.getString("tipo");
+						String cap = rs.getString("capacidad");
+						String desc = rs.getString("descripcion");
+						String pre = rs.getString("precio");
+					%>
 					<tbody>
 						<tr>
 							<td>
 								<div class="form-group">
-									<label for="username"><i class="fa-solid fa-house"></i>
-										Categoría:</label> <input value="Doble"
-										style="background: #E2E2E2; margin-left: 200px; width: 250px"
-										disabled=disabled />
+									<label for="username"><i class="fa-solid fa-user"></i>
+										Categoria:</label><input type="text" 
+										name="categoria"  value="<%=tipo%>"
+									
+										style="background: #E2E2E2; margin-left: 200px; width: 300px"
+										 />
+
 								</div>
 								<div class="form-group">
-									<label for="username"><i class="fa-solid fa-hashtag"></i>
-										Número habitación:</label> <input value="102A"
-										style="background: #E2E2E2; margin-left: 200px; width: 100px"
-										disabled=disabled />
-								</div>
-								<div class="form-group">
-									<label for="username"><i
-										class="fa-solid fa-money-bills"></i> Precio:</label> <input
-										value="$3,500"
+									<label for="username"><i class="fa-solid fa-user"></i>
+										Número habitación:</label><input type="text" 
+										name="habitacion" value="<%=numhab%>"
+									
 										style="background: #E2E2E2; margin-left: 200px; width: 150px"
-										disabled=disabled />
+										 />
+
 								</div>
+								<div class="form-group">
+									<label for="username"><i class="fa-solid fa-user"></i>
+										Precio:</label><input type="text"  name="precio"
+										 value="<%=pre%>" 
+										style="background: #E2E2E2; margin-left: 200px; width: 150px"
+										 />
+
+								</div>
+
 							</td>
 						<tr>
 					</tbody>
+					<%
+					}
+					%>
 				</table>
+
 
 				<table border="2" class="table table-striped table-sm text-center"
 					style="background: #003b46; width: 50%; color: white">
@@ -142,36 +177,51 @@ String fechafin = request.getParameter("dato2");
 						<tr>
 							<td>
 								<div class="form-group">
-									<label for="username"><i
-										class="fa-solid fa-calendar-days"></i> Check-in:</label> <input
-										value="<%=fechaini%>"
+									<label for="username"><i class="fa-solid fa-user"></i>
+										Inicia:</label><input type="text" name="fechaini"  value="<%=fechaini%>"
+										
 										style="background: #E2E2E2; margin-left: 200px; width: 150px"
-										disabled=disabled />
+										 />
+
 								</div>
 								<div class="form-group">
-									<label for="username"><i
-										class="fa-solid fa-calendar-days"></i> Check-out:</label> <input
-										value="<%=fechafin %>"
+									<label for="username"><i class="fa-solid fa-user"></i>
+										Termina:</label><input type="text"  name="fechafin"
+										 value="<%=fechafin%>" 
 										style="background: #E2E2E2; margin-left: 200px; width: 150px"
-										disabled=disabled />
+										 />
+
 								</div>
 								<div class="form-group">
-									<label for="username"><i
-										class="fa-solid fa-money-bills"></i> Total a pagar:</label> <input
-										value="$7,000"
+									<label for="username"><i class="fa-solid fa-user"></i>
+										Total A Pagar:</label><input type="text" 
+										name="totalpagar" value="16,000.00"
+										
 										style="background: #E2E2E2; margin-left: 200px; width: 150px"
-										disabled=disabled />
+										 />
+
 								</div>
+								<div class="form-group">
+									<label for="username"><i class="fa-solid fa-user"></i>
+										Dias:</label><input type="text"  name="dias"
+										 value="<%=dias%>" 
+										style="background: #E2E2E2; margin-left: 200px; width: 150px"
+										 />
+
+								</div>
+
+
 								<div class="form-group">
 									<label for="username"><i class="fa-solid fa-ticket"></i>
-										Folio:</label> <input value="17189"
+										folio:</label> <input value="16394" name="folio"
 										style="background: #E2E2E2; margin-left: 200px; width: 150px"
-										disabled=disabled />
+										 />
 								</div> <input style="width: 80%" type="submit" name="signin"
-								id="signin" class="btn btn-success" value="Confirma reservación" />
+								id="signin" class="btn btn-success" value="submit" />
 							</td>
 						<tr>
 					</tbody>
+					</fieldset>
 				</table>
 			</form>
 		</div>

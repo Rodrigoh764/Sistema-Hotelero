@@ -1,6 +1,9 @@
 package controlador;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -40,18 +43,23 @@ public class RealizaReservacion extends HttpServlet {
 
 		if (fechaInicial) {
 			if(fechaFinal) {
+				LocalDate before = LocalDate.parse(ini, DateTimeFormatter.ISO_LOCAL_DATE);
+				LocalDate dAfter = LocalDate.parse(fin, DateTimeFormatter.ISO_LOCAL_DATE);
+				var diff = before.until(dAfter, ChronoUnit.DAYS);
+				
+	
 					request.setAttribute("status","exito");
 					System.out.print(reservaFecha.getFechaFinal());
-					dispatcher = request.getRequestDispatcher("ReservacionConfirmar.jsp?dato1="+ini+"&dato2="+fin);
+					dispatcher = request.getRequestDispatcher("ReservacionConfirmar.jsp?dato1="+ini+"&dato2="+fin+"&dato3="+diff);
 					dispatcher.forward(request, response);
 			}
 			 
 			request.setAttribute("status", "error");
-			dispatcher = request.getRequestDispatcher("Reserva.jsp");
+			dispatcher = request.getRequestDispatcher("Reserva204B.jsp");
 			dispatcher.forward(request, response);
 		}
 		request.setAttribute("status", "error");
-		dispatcher = request.getRequestDispatcher("Reserva.jsp");
+		dispatcher = request.getRequestDispatcher("Reserva315C.jsp");
 		dispatcher.forward(request, response);
 	
 	}

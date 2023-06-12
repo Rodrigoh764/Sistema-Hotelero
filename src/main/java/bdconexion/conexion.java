@@ -5,7 +5,7 @@ import java.sql.Connection;
 
 public class conexion {
 
-private static Connection c;
+public static Connection c;
     
     static {
         conexion.c = null;
@@ -16,10 +16,10 @@ private static Connection c;
             return conexion.c;
         }
         try {
-            final String driver = "org.postgresql.Driver";
-            final String url = "jdbc:postgresql://localhost:5433/SistemaHotel";
-            final String user = "postgres";
-            final String password = "uacm123";
+             String driver = "org.postgresql.Driver";
+             String url = "jdbc:postgresql://localhost:5433/SistemaHotel";
+             String user = "postgres";
+             String password = "uacm123";
             Class.forName(driver);
             conexion.c = DriverManager.getConnection(url, user, password);
         }

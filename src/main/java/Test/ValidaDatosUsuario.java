@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 import modelo.Usuario;
 
 class ValidaDatosUsuario {
-	
-	
 
 	@Test
 	void testValidaEdad() {

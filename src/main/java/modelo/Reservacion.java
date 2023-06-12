@@ -3,24 +3,72 @@ package modelo;
 //import java.time.temporal.Temporal;
 import java.time.temporal.ChronoUnit;
 
-import bdconexion.conexion;
+
 
 import java.time.format.DateTimeFormatter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+//import java.sql.PreparedStatement;
+//import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class Reservacion {
+	
+	private String nombre;
+	private String habitacion;
+	private String inicio;
+	private String fin;
+	private String total;
+	
 	private String rangoFecha;
 	public String fechaInicio;
 	public String fechaFinal;
-	private double costoReservacion;
-	private String numHabitacion;
-	private String folio;
-	private String categoria;
-	private String costoNoche;
-	private int diasReservados;
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public String setNombre(String nombre) {
+		return this.nombre = nombre;
+	}
+
+	public String getHabitacion() {
+		return habitacion;
+	}
+
+	public String setHabitacion(String habitacion) {
+		return this.habitacion = habitacion;
+	}
+
+	public String getInicio() {
+		return inicio;
+	}
+
+	public String setInicio(String inicio) {
+		return this.inicio = inicio;
+	}
+
+	public String getFin() {
+		return fin;
+	}
+
+	public String setFin(String fin) {
+		return this.fin = fin;
+	}
+
+	public String getTotal() {
+		return total;
+	}
+
+	public String setTotal(String total) {
+		return this.total = total;
+	}
+
+	public String mostrarDatos() {
+		return total;
+	}
+
+	
+	//-------------------------------------------------------------------------
 
 	public boolean setvalidaFechaInicial(String fechaInicio) {
 		LocalDate fechaActual = LocalDate.now();
@@ -81,32 +129,8 @@ public class Reservacion {
 	
 	//----------------------------------------------------------------------------------------
 
-	public int getdiasReservados() {
-		return diasReservados;
-	}
 
-	private Connection c;
 
-	public Reservacion() {
-		this.c = conexion.getConnection();
-	}
-
-	public void agregar(Usuario usuario) {
-		try {
-			String sql = "INSERT INTO clientes (nombre, apellidos, fecnac, telefono, correo, contraseña ) VALUES (?,?,?,?,?,?)";
-			PreparedStatement pst = this.c.prepareStatement(sql);
-			pst.setString(1, usuario.getNombre());
-			pst.setString(2, usuario.getApellido());
-			pst.setString(3, usuario.getEdad());
-			pst.setString(4, usuario.getTelefono());
-			pst.setString(5, usuario.getCorreo());
-			pst.setString(6, usuario.getContrase\u00f1a());
-			pst.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.print(e);
-		}
-	}
 
 	
 

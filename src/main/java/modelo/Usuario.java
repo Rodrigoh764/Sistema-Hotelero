@@ -14,6 +14,7 @@ public class Usuario {
     private String telefono;
     private String correo;
     private String contraseña;
+     
     
     public boolean validaEdad( String edad) {
          LocalDate fechaActual = LocalDate.now();

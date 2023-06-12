@@ -34,18 +34,6 @@
 				<form method="post" action="ReservarHabitacion" style="margin-top: 0px; padding-top: 0px">
 					
 					<div class="form-group">
-						<label for="username">Número de la HAbitacion:</label> 
-					</div>
-					
-					<div class="form-group">
-						<label for="username">Capacidad de personas:</label> 
-					</div>
-					
-					<div class="form-group">
-						<label for="username">Categoria</label>
-					</div>
-					
-					<div class="form-group">
 						<label for="username">Entrada</label> 
 					
 						<input type="Date" name="entrada"

@@ -9,7 +9,7 @@ String correo = (String) session.getAttribute("servletMsg");
 ClienteRegistrados cliregistrado = new ClienteRegistrados();
 
 if (correo != null) {
-	 request.getSession().setAttribute("servletMsg", correo);
+	request.getSession().setAttribute("servletMsg", correo);
 	cliregistrado.setCorreo(correo);
 	existe = 1;
 }
@@ -58,7 +58,7 @@ if (correo != null) {
 		class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top "
 		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand" href="Index.jsp">"Tlazohtiliztli"</a>
+			<a class="navbar-brand" href="Index.jsp">"Paraiso"</a>
 			<button
 				class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded"
 				type="button" data-bs-toggle="collapse"
@@ -93,9 +93,10 @@ if (correo != null) {
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							<%=nomUsuario%></a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="Registro">Cerrar
+							<li><a class="dropdown-item" href="MisReservaciones.jsp">Reservaciones</a></li>
+
+							<li><a class="dropdown-item" href="#">Cerrar
 									Sessión</a></li>
-							<li><a class="dropdown-item" href="#">Reservaciones</a></li>
 
 						</ul></li>
 					<%
@@ -166,7 +167,7 @@ if (correo != null) {
 
 				<!--Servicio 1 -->
 				<div class="col-md-6 col-lg-4 mb-5">
-					<a href="Habitacion.jsp?correo=<%=existe%>">
+					<a href="HabitacionEs.jsp?correo=<%=existe%>">
 						<div class="portfolio-item mx-auto" data-bs-toggle="modal"
 							data-bs-target="#portfolioModal1">
 
@@ -377,6 +378,16 @@ if (correo != null) {
 		if (status == "close") {
 			swal("¡Cerraste Sessión!");
 		}
+		if (status == "reserva") {
+			swal("¡Operacion Exitosa!", "¡Tu reservacion fue un exito!");
+		}
+		if (status == "eliminado") {
+			swal("¡Operacion Exitosa!", "¡Tu reservacion fue eliminada!");
+		}
+		if (status == "modi") {
+			swal("¡Operacion Exitosa!", "¡Se Actualizo su Reserva!");
+		}
+		
 	</script>
 
 </body>
